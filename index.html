@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MAGIA – El Significado que Transforma</title>
+
+  <!-- PWA META -->
+  <meta name="theme-color" content="#0a0a1a" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="MAGIA" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="MAGIA – El Significado que Transforma" />
+  <meta property="og:description" content="Descubre el poderoso acrónimo MAGIA: Mentalidad, Actitud, Gestión, Innovación, Acción" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://magia.vibraspositivashm.com" />
+  <meta property="og:image" content="https://via.placeholder.com/1200x630/0a0a1a/FFD700?text=MAGIA" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Manifest inline via JS (single-file PWA) -->
+  <link id="manifest-link" rel="manifest" href="#" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --gold: #FFD700;
+      --gold2: #FFA500;
+      --deep: #0a0a1a;
+      --mid: #10102a;
+      --card: #13133a;
+      --glow: rgba(255, 215, 0, 0.18);
+      --text: #f0e6ff;
+      --sub: #b0a0cc;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--deep);
+      color: var(--text);
+      font-family: 'Raleway', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── STARS BACKGROUND ── */
+    #stars-bg {
+      position: fixed; inset: 0; z-index: 0;
+      background: radial-gradient(ellipse at 20% 30%, #1a0a3a 0%, #0a0a1a 60%);
+      overflow: hidden;
+    }
+    #stars-bg::before, #stars-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.9) 0%, transparent 100%),
+        radial-gradient(1px 1px at 25% 40%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 50% 10%, rgba(255,215,0,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 70% 25%, rgba(255,255,255,0.9) 0%, transparent 100%),
+        radial-gradient(1px 1px at 85% 60%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 40% 70%, rgba(255,255,255,0.8) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 60% 80%, rgba(255,215,0,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 90%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 15% 85%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 35% 55%, rgba(255,255,255,0.8) 0%, transparent 100%),
+        radial-gradient(1px 1px at 78% 45%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 5% 50%, rgba(255,215,0,0.7) 0%, transparent 100%);
+      animation: twinkle 4s ease-in-out infinite alternate;
+    }
+    #stars-bg::after {
+      background-image:
+        radial-gradient(1px 1px at 20% 20%, rgba(255,255,255,0.6) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 35%, rgba(255,255,255,0.8) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 80% 15%, rgba(255,215,0,0.9) 0%, transparent 100%),
+        radial-gradient(1px 1px at 45% 90%, rgba(255,255,255,0.7) 0%, transparent 100%),
+        radial-gradient(1px 1px at 95% 30%, rgba(255,255,255,0.5) 0%, transparent 100%),
+        radial-gradient(1px 1px at 30% 75%, rgba(255,255,255,0.9) 0%, transparent 100%);
+      animation-delay: 2s;
+    }
+    @keyframes twinkle {
+      from { opacity: 0.5; }
+      to { opacity: 1; }
+    }
+
+    /* ── PARTICLES ── */
+    .particle {
+      position: fixed;
+      width: 4px; height: 4px;
+      border-radius: 50%;
+      background: var(--gold);
+      pointer-events: none;
+      z-index: 1;
+      animation: float-up linear infinite;
+      opacity: 0;
+    }
+    @keyframes float-up {
+      0% { transform: translateY(100vh) scale(0); opacity: 0; }
+      10% { opacity: 0.8; }
+      90% { opacity: 0.4; }
+      100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+    }
+
+    /* ── CONTENT ── */
+    #app {
+      position: relative; z-index: 2;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 20px 60px;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 60px 0 30px;
+    }
+    .hero-icon {
+      font-size: 60px;
+      display: block;
+      animation: pulse-glow 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 20px var(--gold));
+    }
+    @keyframes pulse-glow {
+      0%, 100% { filter: drop-shadow(0 0 15px var(--gold)); transform: scale(1); }
+      50% { filter: drop-shadow(0 0 35px var(--gold)); transform: scale(1.1); }
+    }
+    .hero-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(64px, 20vw, 110px);
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      line-height: 1;
+      margin: 10px 0 6px;
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 40%, #FF8C00 60%, #FFD700 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 30px rgba(255,215,0,0.5));
+      animation: title-shine 4s ease-in-out infinite;
+    }
+    @keyframes title-shine {
+      0%, 100% { filter: drop-shadow(0 0 20px rgba(255,215,0,0.4)); }
+      50% { filter: drop-shadow(0 0 50px rgba(255,165,0,0.8)); }
+    }
+    .hero-sub {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(11px, 3vw, 14px);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--sub);
+      margin-bottom: 8px;
+    }
+    .hero-desc {
+      font-size: 14px;
+      color: var(--sub);
+      line-height: 1.6;
+      max-width: 360px;
+      margin: 0 auto 30px;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex; align-items: center; gap: 12px;
+      margin: 10px 0 30px;
+    }
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .divider-star { color: var(--gold); font-size: 16px; }
+
+    /* ── CARDS ── */
+    .cards-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .letter-card {
+      background: linear-gradient(135deg, rgba(19,19,58,0.95) 0%, rgba(26,10,58,0.8) 100%);
+      border: 1px solid rgba(255,215,0,0.2);
+      border-radius: 20px;
+      padding: 24px 22px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: card-in 0.6s ease forwards;
+    }
+    .letter-card:nth-child(1) { animation-delay: 0.1s; }
+    .letter-card:nth-child(2) { animation-delay: 0.25s; }
+    .letter-card:nth-child(3) { animation-delay: 0.4s; }
+    .letter-card:nth-child(4) { animation-delay: 0.55s; }
+    .letter-card:nth-child(5) { animation-delay: 0.7s; }
+    @keyframes card-in {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .letter-card::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle at center, rgba(255,215,0,0.05) 0%, transparent 60%);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .letter-card:hover::before, .letter-card.active::before { opacity: 1; }
+    .letter-card:hover, .letter-card.active {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 16px 40px rgba(255,215,0,0.15), 0 0 0 1px rgba(255,215,0,0.4);
+      border-color: rgba(255,215,0,0.5);
+    }
+
+    /* Corner accent */
+    .letter-card::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 60px; height: 60px;
+      background: linear-gradient(225deg, rgba(255,215,0,0.15) 0%, transparent 60%);
+      border-radius: 0 20px 0 0;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 12px;
+    }
+    .card-letter {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 52px;
+      font-weight: 900;
+      line-height: 1;
+      background: linear-gradient(135deg, #FFD700, #FF8C00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      min-width: 52px;
+      text-align: center;
+      filter: drop-shadow(0 0 10px rgba(255,165,0,0.5));
+    }
+    .card-title-block { flex: 1; }
+    .card-word {
+      font-family: 'Cinzel', serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.05em;
+    }
+    .card-badge {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(255,215,0,0.1);
+      border: 1px solid rgba(255,215,0,0.25);
+      border-radius: 20px;
+      padding: 2px 10px;
+      margin-top: 4px;
+    }
+    .card-emoji {
+      font-size: 32px;
+      filter: drop-shadow(0 0 8px rgba(255,215,0,0.3));
+    }
+
+    .card-body {
+      font-size: 14px;
+      line-height: 1.7;
+      color: #d0c0e8;
+    }
+    .card-body strong { color: var(--gold); font-weight: 600; }
+
+    /* Expandable */
+    .card-extra {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease, opacity 0.4s ease;
+      opacity: 0;
+    }
+    .letter-card.active .card-extra {
+      max-height: 300px;
+      opacity: 1;
+    }
+    .card-quote {
+      margin-top: 14px;
+      padding: 12px 16px;
+      border-left: 3px solid var(--gold);
+      background: rgba(255,215,0,0.05);
+      border-radius: 0 10px 10px 0;
+      font-style: italic;
+      font-size: 13px;
+      color: var(--gold2);
+    }
+    .card-actions {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .tag {
+      font-size: 11px;
+      padding: 4px 12px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      color: var(--sub);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── SEPARATOR & CONCLUSION ── */
+    .conclusion {
+      text-align: center;
+      margin: 40px 0 20px;
+      padding: 30px 24px;
+      background: linear-gradient(135deg, rgba(19,19,58,0.9) 0%, rgba(26,10,58,0.7) 100%);
+      border: 1px solid rgba(255,215,0,0.25);
+      border-radius: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .conclusion::before {
+      content: '✦';
+      position: absolute;
+      top: -20px; left: 50%;
+      transform: translateX(-50%);
+      font-size: 40px;
+      color: var(--gold);
+      filter: drop-shadow(0 0 15px var(--gold));
+    }
+    .conclusion-title {
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .conclusion-text {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #d0c0e8;
+    }
+    .conclusion-text em {
+      color: var(--gold);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    /* ── PROGRESS BAR ── */
+    .progress-bar {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      margin: 24px 0 8px;
+    }
+    .prog-dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,215,0,0.2);
+      border: 1px solid rgba(255,215,0,0.3);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .prog-dot.done {
+      background: var(--gold);
+      box-shadow: 0 0 8px var(--gold);
+    }
+
+    /* ── SHARE BUTTON ── */
+    .share-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 20px auto 0;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, #FFD700, #FF8C00);
+      color: #0a0a1a;
+      font-family: 'Cinzel', serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 6px 30px rgba(255,165,0,0.35);
+    }
+    .share-btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 10px 40px rgba(255,165,0,0.5);
+    }
+    .share-btn:active { transform: scale(0.97); }
+
+    /* ── INSTALL BANNER ── */
+    #install-banner {
+      display: none;
+      position: fixed;
+      bottom: 20px; left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 32px);
+      max-width: 520px;
+      background: linear-gradient(135deg, #1a0a3a, #0d0d2a);
+      border: 1px solid rgba(255,215,0,0.4);
+      border-radius: 16px;
+      padding: 14px 20px;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.6);
+    }
+    #install-banner.show { display: flex; }
+    .install-icon { font-size: 28px; flex-shrink: 0; }
+    .install-text { flex: 1; font-size: 13px; color: var(--text); line-height: 1.4; }
+    .install-text strong { color: var(--gold); display: block; margin-bottom: 2px; font-family: 'Cinzel', serif; }
+    .install-btn {
+      padding: 8px 18px;
+      background: linear-gradient(135deg, #FFD700, #FF8C00);
+      color: #0a0a1a;
+      font-weight: 700;
+      font-size: 12px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      white-space: nowrap;
+      letter-spacing: 0.05em;
+    }
+    .install-close {
+      background: none; border: none;
+      color: var(--sub); font-size: 18px;
+      cursor: pointer; padding: 4px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 30px 0 20px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.25);
+      letter-spacing: 0.08em;
+      line-height: 1.8;
+    }
+    footer a { color: rgba(255,215,0,0.4); text-decoration: none; }
+
+    /* ── TOAST ── */
+    .toast {
+      position: fixed;
+      bottom: 80px; left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: rgba(26,10,58,0.95);
+      border: 1px solid rgba(255,215,0,0.4);
+      color: var(--gold);
+      padding: 10px 22px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-family: 'Cinzel', serif;
+      opacity: 0;
+      transition: all 0.4s;
+      pointer-events: none;
+      z-index: 200;
+      white-space: nowrap;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<div id="stars-bg"></div>
+
+<div id="app">
+
+  <!-- HERO -->
+  <div class="hero">
+    <span class="hero-icon">✨</span>
+    <h1 class="hero-title">MAGIA</h1>
+    <p class="hero-sub">El acrónimo que lo cambia todo</p>
+    <p class="hero-desc">
+      Descubre el poderoso significado detrás de cada letra. Un concepto presentado en la <strong>Feria Effix 2025</strong>.
+    </p>
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-star">✦</span>
+      <div class="divider-line"></div>
+    </div>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-bar" id="progress-bar">
+    <div class="prog-dot" data-idx="0"></div>
+    <div class="prog-dot" data-idx="1"></div>
+    <div class="prog-dot" data-idx="2"></div>
+    <div class="prog-dot" data-idx="3"></div>
+    <div class="prog-dot" data-idx="4"></div>
+  </div>
+
+  <!-- CARDS -->
+  <div class="cards-grid" id="cards-grid">
+
+    <!-- M -->
+    <div class="letter-card" data-idx="0" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-letter">M</div>
+        <div class="card-title-block">
+          <div class="card-word">Mentalidad</div>
+          <span class="card-badge">Fundamento</span>
+        </div>
+        <div class="card-emoji">🧠</div>
+      </div>
+      <div class="card-body">
+        Todo comienza en la mente. La <strong>mentalidad</strong> es el terreno donde se siembran los sueños o las limitaciones. Una mentalidad de crecimiento convierte cada obstáculo en una oportunidad de aprender.
+      </div>
+      <div class="card-extra">
+        <div class="card-quote">
+          "Cambia tu mentalidad y cambiarás tu realidad. No existe límite más poderoso que el que tú mismo construyes."
+        </div>
+        <div class="card-actions">
+          <span class="tag">Pensamiento positivo</span>
+          <span class="tag">Crecimiento</span>
+          <span class="tag">Resiliencia</span>
+          <span class="tag">Visión</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- A -->
+    <div class="letter-card" data-idx="1" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-letter">A</div>
+        <div class="card-title-block">
+          <div class="card-word">Actitud</div>
+          <span class="card-badge">Motor Interno</span>
+        </div>
+        <div class="card-emoji">🔥</div>
+      </div>
+      <div class="card-body">
+        La <strong>actitud</strong> es el motor invisible que determina cómo enfrentas cada situación. No puedes controlar lo que pasa, pero siempre puedes elegir con qué actitud lo vives.
+      </div>
+      <div class="card-extra">
+        <div class="card-quote">
+          "La actitud correcta ante el fracaso es la semilla del éxito. Lo que otros llaman caída, tú lo llamas trampolín."
+        </div>
+        <div class="card-actions">
+          <span class="tag">Proactividad</span>
+          <span class="tag">Entusiasmo</span>
+          <span class="tag">Disciplina</span>
+          <span class="tag">Perseverancia</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- G -->
+    <div class="letter-card" data-idx="2" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-letter">G</div>
+        <div class="card-title-block">
+          <div class="card-word">Gestión</div>
+          <span class="card-badge">Ejecución</span>
+        </div>
+        <div class="card-emoji">⚙️</div>
+      </div>
+      <div class="card-body">
+        Sin <strong>gestión</strong>, los sueños se quedan en ideas. Gestionar es planear, organizar, ejecutar y medir. Es convertir la visión en pasos concretos, cada día, sin esperar el momento perfecto.
+      </div>
+      <div class="card-extra">
+        <div class="card-quote">
+          "Un sueño con un plan es una meta. Una meta con gestión diaria es inevitablemente un resultado."
+        </div>
+        <div class="card-actions">
+          <span class="tag">Planificación</span>
+          <span class="tag">Eficiencia</span>
+          <span class="tag">Liderazgo</span>
+          <span class="tag">Resultados</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- I -->
+    <div class="letter-card" data-idx="3" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-letter">I</div>
+        <div class="card-title-block">
+          <div class="card-word">Innovación</div>
+          <span class="card-badge">Diferenciador</span>
+        </div>
+        <div class="card-emoji">💡</div>
+      </div>
+      <div class="card-body">
+        La <strong>innovación</strong> no es inventar cohetes. Es hacer las cosas de manera diferente, mejor. Quien no innova, se estanca. El mundo cambia y quien no se adapta, desaparece.
+      </div>
+      <div class="card-extra">
+        <div class="card-quote">
+          "Innovar es preguntarse: ¿y si lo hago diferente? La respuesta a esa pregunta puede cambiar tu negocio, tu vida y el mundo."
+        </div>
+        <div class="card-actions">
+          <span class="tag">Creatividad</span>
+          <span class="tag">Adaptación</span>
+          <span class="tag">Tecnología</span>
+          <span class="tag">Disrupción</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- A -->
+    <div class="letter-card" data-idx="4" onclick="toggleCard(this)">
+      <div class="card-header">
+        <div class="card-letter">A</div>
+        <div class="card-title-block">
+          <div class="card-word">Acción</div>
+          <span class="card-badge">El Detonante</span>
+        </div>
+        <div class="card-emoji">🚀</div>
+      </div>
+      <div class="card-body">
+        La <strong>acción</strong> es lo que diferencia a los soñadores de los realizadores. Sin acción, MAGI se queda incompleta. Actuar hoy, aunque sea imperfecto, vale más que esperar la perfección.
+      </div>
+      <div class="card-extra">
+        <div class="card-quote">
+          "El universo no recompensa a quien tiene el mejor plan; recompensa a quien da el primer paso. Actúa. Hoy."
+        </div>
+        <div class="card-actions">
+          <span class="tag">Ejecución</span>
+          <span class="tag">Valentía</span>
+          <span class="tag">Urgencia</span>
+          <span class="tag">Compromiso</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CONCLUSION -->
+  <div class="conclusion">
+    <div class="conclusion-title">La Verdadera MAGIA</div>
+    <p class="conclusion-text">
+      La magia no está en lo sobrenatural. Está en ti. Cuando combinas una <em>Mentalidad</em> poderosa, con una <em>Actitud</em> inquebrantable, una <em>Gestión</em> impecable, la <em>Innovación</em> constante y la <em>Acción</em> decidida… eso es <em>MAGIA</em> real.
+    </p>
+    <button class="share-btn" onclick="compartir()">
+      ✨ Compartir esta MAGIA
+    </button>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    Concepto presentado en la <strong>Feria Effix 2025</strong> con <strong>@jmrestrepoa</strong><br/>
+    Desarrollada por <strong>Vibras Positivas HM</strong> — Derechos de Autor Reservados<br/>
+    <a href="#">vibraspositivashm.com</a>
+  </footer>
+
+</div>
+
+<!-- INSTALL BANNER -->
+<div id="install-banner">
+  <div class="install-icon">📲</div>
+  <div class="install-text">
+    <strong>Instalar MAGIA App</strong>
+    Agrega esta app a tu pantalla de inicio
+  </div>
+  <button class="install-btn" onclick="instalarApp()">Instalar</button>
+  <button class="install-close" onclick="cerrarBanner()">✕</button>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // ── MANIFEST INLINE ──
+  const manifest = {
+    name: "MAGIA – El Significado que Transforma",
+    short_name: "MAGIA",
+    description: "Mentalidad, Actitud, Gestión, Innovación, Acción",
+    start_url: "./",
+    display: "standalone",
+    background_color: "#0a0a1a",
+    theme_color: "#0a0a1a",
+    orientation: "portrait",
+    icons: [
+      { src: "https://via.placeholder.com/192/0a0a1a/FFD700?text=M", sizes: "192x192", type: "image/png" },
+      { src: "https://via.placeholder.com/512/0a0a1a/FFD700?text=M", sizes: "512x512", type: "image/png" }
+    ]
+  };
+  const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+  document.getElementById('manifest-link').href = URL.createObjectURL(blob);
+
+  // ── SERVICE WORKER INLINE ──
+  const swCode = `
+    const CACHE = 'magia-v1';
+    const ASSETS = ['./', './index.html'];
+    self.addEventListener('install', e => {
+      e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)).then(() => self.skipWaiting()));
+    });
+    self.addEventListener('activate', e => {
+      e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim()));
+    });
+    self.addEventListener('fetch', e => {
+      e.respondWith(caches.match(e.request).then(r => r || fetch(e.request)));
+    });
+  `;
+  const swBlob = new Blob([swCode], { type: 'application/javascript' });
+  const swUrl = URL.createObjectURL(swBlob);
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register(swUrl).catch(() => {});
+  }
+
+  // ── PARTICLES ──
+  function createParticle() {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + 'vw';
+    p.style.animationDuration = (4 + Math.random() * 6) + 's';
+    p.style.animationDelay = (Math.random() * 3) + 's';
+    p.style.width = p.style.height = (2 + Math.random() * 4) + 'px';
+    const colors = ['#FFD700','#FFA500','#FF8C00','#FFFFFF','#E0C0FF'];
+    p.style.background = colors[Math.floor(Math.random() * colors.length)];
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 12000);
+  }
+  setInterval(createParticle, 600);
+
+  // ── CARD TOGGLE ──
+  const opened = new Set();
+  function toggleCard(card) {
+    const idx = parseInt(card.dataset.idx);
+    card.classList.toggle('active');
+    if (card.classList.contains('active')) {
+      opened.add(idx);
+    }
+    updateProgress();
+  }
+  function updateProgress() {
+    document.querySelectorAll('.prog-dot').forEach((dot, i) => {
+      dot.classList.toggle('done', opened.has(i));
+    });
+  }
+  document.querySelectorAll('.prog-dot').forEach(dot => {
+    dot.addEventListener('click', () => {
+      const idx = parseInt(dot.dataset.idx);
+      const card = document.querySelectorAll('.letter-card')[idx];
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(() => { if (!card.classList.contains('active')) toggleCard(card); }, 400);
+    });
+  });
+
+  // ── SHARE ──
+  function compartir() {
+    const txt = `✨ MAGIA tiene un significado poderoso:\n\n🧠 M — Mentalidad\n🔥 A — Actitud\n⚙️ G — Gestión\n💡 I — Innovación\n🚀 A — Acción\n\nCuando unes todo esto, creas verdadera MAGIA. 🌟`;
+    if (navigator.share) {
+      navigator.share({ title: 'El significado de MAGIA', text: txt, url: window.location.href })
+        .catch(() => {});
+    } else {
+      navigator.clipboard.writeText(txt).then(() => showToast('✅ Copiado al portapapeles'));
+    }
+  }
+
+  // ── TOAST ──
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2800);
+  }
+
+  // ── INSTALL ──
+  let deferredPrompt;
+  window.addEventListener('beforeinstallprompt', e => {
+    e.preventDefault();
+    deferredPrompt = e;
+    document.getElementById('install-banner').classList.add('show');
+  });
+  function instalarApp() {
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then(c => {
+        if (c.outcome === 'accepted') showToast('🎉 ¡App instalada con éxito!');
+        deferredPrompt = null;
+      });
+    }
+    document.getElementById('install-banner').classList.remove('show');
+  }
+  function cerrarBanner() {
+    document.getElementById('install-banner').classList.remove('show');
+  }
+
+  // ── AUTO-OPEN first card after delay ──
+  setTimeout(() => {
+    const first = document.querySelector('.letter-card');
+    if (first) toggleCard(first);
+  }, 1200);
+</script>
+</body>
+</html>
